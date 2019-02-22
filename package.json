@@ -1,0 +1,61 @@
+{
+  "name": "shopping",
+  "version": "1.0.0",
+  "description": "shopping for all",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config config/webpack.base.config.js --open --hot --history-api-fallback --env.PLATFORM=local --env.VERSION=stag",
+    "prebuild": "webpack --mode production --config config/webpack.prod.config.js --env.PLATFORM=production --env.VERSION=stag --progress",
+    "build": "nodemon server"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.14",
+    "multer": "^1.4.1",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^4.6.0",
+    "cors": "^2.8.5",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "imagemin-webpack-plugin": "^2.4.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "vue-loader": "^15.6.4",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.6",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1",
+    "webpack-visualizer-plugin": "^0.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NurTur/shopping.git"
+  },
+  "keywords": [],
+  "author": "Nurbolat Turgynbekov <nurbolatturgynbekov16@gmail.com> (example.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NurTur/shopping/issues"
+  },
+  "homepage": "https://github.com/NurTur/shopping#readme"
+}
