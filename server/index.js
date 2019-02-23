@@ -42,7 +42,8 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
     .then(() => {
         console.log("MongoDB Databases connected")
 
-        app.get('/products', (req, res) => {
+        app.get('/products', async (req, res) => {
+            const product = await PRODUCTS.find({});
             res.status(200).json({ message: "nur" });
         })
         app.post('/products', upload.single('productImage'), async (req, res) => {
