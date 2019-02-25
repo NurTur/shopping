@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 
-const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -25,15 +24,11 @@ module.exports = env => {
             }
           },
           {
-            test: /\.vue$/,
-            use: 'vue-loader'
-          },
-          {
             test: /\.scss$/,
             use: [
               PLATFORM === "production"
                 ? MiniCssExtractPlugin.loader
-                : "vue-style-loader",
+                : "style-loader",
               "css-loader",
               "sass-loader"
             ]
@@ -44,7 +39,6 @@ module.exports = env => {
         historyApiFallback: true
       },
       plugins: [
-        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
           template: "./client/index.html",
           filename: "./index.html"

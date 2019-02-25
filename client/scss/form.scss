@@ -1,0 +1,103 @@
+
+ body{
+ background-color: #373f46;
+  text-align: center;
+
+  min-width: 320px;
+ }
+
+#form-outer {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  min-width: 480px;
+  background-color: rgb(235, 231, 225);
+   margin: 0 auto;
+  border-radius: 4px;
+  width: 50%;
+  max-width: 750px;
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.labels {
+  display: inline-block;
+  text-align: right;
+  width: 30%;
+  padding: 5px;
+  vertical-align: top;
+  margin-top: 10px;
+}
+
+.rightTab {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+  vertical-align: middle;
+}
+
+.input-field {
+  height: 20px;
+  width: 280px;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+.dropdown {
+  height: 35px;
+  width: 140px;
+  padding: 5px;
+  margin: 10px;  
+  margin-top: 15px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+.center
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#submit:hover {
+  color: black;
+  background-color: #8bc0ee;
+}
+#submit {
+  background-color: #0b599e;
+  border-radius: 4px;
+  color: white;
+  font-size: 1em;
+  height: 40px;
+  width: 100%;
+ 
+  border: 0px solid;
+}
+
+@media screen and (max-width: 1054px) {
+  .input-field {
+    width: 80%;
+  }
+  select {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .labels {
+    width: 100%;
+    text-align: left;
+  }
+  .rightTab {
+    width: 80%;
+    float: left;
+  }
+  .input-field {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+  }
+}
