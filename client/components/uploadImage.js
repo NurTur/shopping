@@ -14,7 +14,14 @@ class UploadImage extends React.Component {
         const reader = new FileReader();
         reader.onload = (e) => {
             image = e.target.result;
-            this.props.SetIMAGE({ selectedFile, image });
+            if ((selectedFile.size / 1024) > 20) {
+                let info = false;
+                this.props.SetIMAGE({ selectedFile, image, info });
+            }
+            else {
+                let info = true;
+                this.props.SetIMAGE({ selectedFile, image, info });
+            }
         };
         reader.readAsDataURL(selectedFile);
     };
@@ -27,7 +34,7 @@ class UploadImage extends React.Component {
     }
 
     render() {
-        const { image, selectedFile } = this.props.UploadImage;
+        const { image, selectedFile, info } = this.props.UploadImage;
 
         return (<div id="imageUpload">
             <div className="imageHeader">
@@ -45,7 +52,8 @@ class UploadImage extends React.Component {
             <div className="imageMain">
                 <div className="text">
                     {image === false ? <p>No files selected</p> :
-                        (<div><p>File name: {selectedFile.name}</p><p>File name: {selectedFile.size} bytes</p></div>)}
+                        (info ? (<div><p>File name: {selectedFile.name}</p><p>File name: {(selectedFile.size / 1024).toFixed(2)} KB</p></div>) :
+                            <p style={{ color: "red" }}>Please, select image less than 20 KB </p>)}
                 </div>
                 <div className="image">
                     {image && <img className="imageView" src={image} />}

@@ -14,18 +14,12 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, new Date().toLocaleDateString() + file.originalname);
     },
 
 });
 
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-        cb(null, true);
-    } else { cb(null, false); }
-}
-
-const upload = multer({ storage, limits: { fileSize: 1024 * 100 }, fileFilter })
+const upload = multer({ storage })
 /******************************************************************************/
 
 
@@ -44,9 +38,9 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
 
         app.get('/products', async (req, res) => {
             const product = await PRODUCTS.find({});
-            res.status(200).json({ message: "nur" });
+            res.status(200).json(product);
         })
-        app.post('/products', upload.single('productImage'), async (req, res) => {
+        app.post('/productsWithPhoto', upload.single('productImage'), async (req, res) => {
 
             const newdata = {
                 productName: req.body.productName,
@@ -61,6 +55,18 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
             res.status(201).json({ message: "advert added" });
         })
 
+        app.post('/productsOutPhoto', async (req, res) => {
+            const newdata = {
+                productName: req.body.productName,
+                productDescription: req.body.productDescription,
+                productCategory: req.body.productCategory,
+                productPrice: req.body.productPrice,
+                productImage: "uploads\\NoImageAvailable.jpg"
+            }
+            const addProduct = new PRODUCTS(newdata);
+            await addProduct.save();
+            res.status(201).json({ message: "advert added" });
+        });
 
         app.listen(PORT || 3000, () => {
             console.log("Listening on port " + PORT);

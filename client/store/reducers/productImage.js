@@ -1,6 +1,6 @@
 import { SELECTIMAGE } from "../actions/productImage";
 
-const InitalState = { image: false, selectedFile: null }
+const InitalState = { image: false, selectedFile: null, info: false }
 
 function UploadImage(state = InitalState, action) {
     switch (action.type) {

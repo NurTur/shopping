@@ -17,15 +17,27 @@ class ProductForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        const { image, info } = this.props.UploadImage;
         const formatCurrency = new Intl.NumberFormat(['ban', 'id']).format(parseFloat(this.productPriceRef.current.value));
-        const obj = {
-            productName: this.productNameRef.current.value,
-            productDescription: this.productDescriptionRef.current.value,
-            productCategory: this.productCategoryRef.current.value,
-            productPrice: `${formatCurrency} ${this.state.productValuta}`
-        };
+        if (image && info) {
+            const obj = {
+                productName: this.productNameRef.current.value,
+                productDescription: this.productDescriptionRef.current.value,
+                productCategory: this.productCategoryRef.current.value,
+                productPrice: `${formatCurrency} ${this.state.productValuta}`
+            };
+            PostProduct(this.props.UploadImage.selectedFile, obj).then(res => console.log(res.data));
+        }
+        else {
+            const obj = {
+                productName: this.productNameRef.current.value,
+                productDescription: this.productDescriptionRef.current.value,
+                productCategory: this.productCategoryRef.current.value,
+                productPrice: `${formatCurrency} ${this.state.productValuta}`
+            };
+            PostProduct(null, obj).then(res => console.log(res.data));
+        }
 
-        PostProduct(this.props.UploadImage.selectedFile, obj).then(res => console.log(res.data));
     };
 
     render() {
