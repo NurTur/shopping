@@ -1,9 +1,42 @@
 import React from "react";
-
+import GetProducts from "../services/getProducts";
+import GetExhange from "../services/getExhange";
+import Product from "./product";
 
 class HomePage extends React.Component {
+    state = { dataDB: null, currencies: null }
+
+    componentDidMount() {
+        this.onGetProducts();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.dataDB !== this.state.dataDB) {
+            this.onGetExhange();
+        }
+    }
+
+    onGetProducts = async () => {
+        try {
+            const dataDB = await GetProducts();
+            this.setState({ dataDB });
+        }
+        catch (err) { console.log(err); }
+    }
+
+    onGetExhange = async () => {
+        try {
+            const currencies = await GetExhange();
+            this.setState({ currencies });
+        }
+        catch (err) { console.log(err); }
+    }
 
     render() {
+        const { dataDB, currencies } = this.state;
+        console.log("dataDB", dataDB);
+        console.log("currencies", currencies);
+        console.log("--------------------");
         return (<div id="homePage">
             <div className="headerHome">
                 <header id="headerOfPage">
@@ -22,12 +55,32 @@ class HomePage extends React.Component {
                         </select>
                     </div>
 
+                    <div className="condition">
+                        <label htmlFor="input">By Price ($) :</label>
+                        <div id="input">
+                            <label id="text1" htmlFor="from">from</label>
+                            <input id="from" type="number" />
+                            <label id="text2" htmlFor="to">to</label>
+                            <input id="to" type="number" />
+                        </div>
+                    </div>
 
+                    <div className="condition">
+                        <label htmlFor="input">By Date :</label>
+                        <div id="input">
+                            <label id="text1" htmlFor="from">from</label>
+                            <input id="from" type="number" />
+                            <label id="text2" htmlFor="to">to</label>
+                            <input id="to" type="number" />
+                        </div>
+                    </div>
 
 
                 </div>
             </section>
-            <div className="mainHome"></div>
+            <div className="mainHome">
+                {dataDB !== null ? <Product dataDB={dataDB} /> : "ttt"}
+            </div>
             <div className="footerHome"></div>
         </div>);
     }

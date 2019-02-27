@@ -28,6 +28,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
+//app.use('/dist', express.static('dist'));
+
 
 
 
@@ -36,11 +38,12 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
     .then(() => {
         console.log("MongoDB Databases connected")
 
-        app.get('/products', async (req, res) => {
+        app.get('/api/products', async (req, res) => {
             const product = await PRODUCTS.find({});
             res.status(200).json(product);
-        })
-        app.post('/productsWithPhoto', upload.single('productImage'), async (req, res) => {
+        });
+
+        app.post('/api/productsWithPhoto', upload.single('productImage'), async (req, res) => {
 
             const newdata = {
                 productName: req.body.productName,
@@ -55,7 +58,7 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
             res.status(201).json({ message: "advert added" });
         })
 
-        app.post('/productsOutPhoto', async (req, res) => {
+        app.post('/api/productsOutPhoto', async (req, res) => {
             const newdata = {
                 productName: req.body.productName,
                 productDescription: req.body.productDescription,

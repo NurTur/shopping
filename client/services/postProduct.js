@@ -13,9 +13,9 @@ export default function (file, obj) {
                 'content-type': 'multipart/form-data'
             }
         };
-        return axios.post("http://localhost:5000/productsWithPhoto", formData, config);
+        return axios.post("http://localhost:5000/api/productsWithPhoto", formData, config);
     }
     else {
-        return axios.post("http://localhost:5000/productsOutPhoto", obj);
+        return axios.post("http://localhost:5000/api/productsOutPhoto", obj);
     }
 };

@@ -18,6 +18,8 @@ store.subscribe(() => console.log("===>", store.getState()));
 import "./scss/homePage.scss";
 import "./scss/headerOfPage.scss";
 import "./scss/filters.scss";
+import "./scss/mainOfPage.scss";
+
 ReactDOM.render(<Provider store={store}><HomePage /></Provider>,
   document.getElementById("app")
 )
