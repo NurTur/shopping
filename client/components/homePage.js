@@ -7,13 +7,8 @@ class HomePage extends React.Component {
     state = { dataDB: null, currencies: null }
 
     componentDidMount() {
-        this.onGetProducts();
-    }
+        this.onGetProducts().then(() => this.onGetExhange());
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.dataDB !== this.state.dataDB) {
-            this.onGetExhange();
-        }
     }
 
     onGetProducts = async () => {
@@ -35,13 +30,29 @@ class HomePage extends React.Component {
     render() {
         const { dataDB, currencies } = this.state;
         console.log("dataDB", dataDB);
-        console.log("currencies", currencies);
+        if (currencies) {
+            console.log("currencies");
+        }
         console.log("--------------------");
         return (<div id="homePage">
             <div className="headerHome">
                 <header id="headerOfPage">
                     <img className="image" src="/dist/images/logotip.jpg" alt="logotip" />
+                    {currencies &&
+                        <div className="exhange">
+                            <div className="rates">
+                                <img src="/dist/images/EUR.jpg" alt="EUR" />
+                                <h4>1 EUR = {(currencies.EUR.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</h4>
+                            </div>
+                            <div className="rates">
+                                <img src="/dist/images/USD.jpg" alt="USD flag" />
+                                <h4>1 USD = {(currencies.USD.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</h4>
+                            </div>
+                        </div>
+                    }
                     <div className="link"><a href="#">Login</a></div>
+
+
                 </header>
             </div>
             <section className="filters">

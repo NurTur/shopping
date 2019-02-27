@@ -6,6 +6,21 @@
 
   .image { width: 120px; }
  
+  .exhange {
+    margin-left:10px;
+    height: 80px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+   
+    .rates {
+     height: 40px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     img { width: 63px; height: 35px;}   
+    }
+  }
   .link { 
     width: 100%;
     font-size: 18px;
