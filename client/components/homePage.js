@@ -3,13 +3,19 @@ import GetProducts from "../services/getProducts";
 import GetExhange from "../services/getExhange";
 import Product from "./product";
 
-class HomePage extends React.Component {
-    state = { dataDB: null, currencies: null }
 
-    componentDidMount() {
-        this.onGetProducts().then(() => this.onGetExhange());
+class HomePage extends React.Component {
+    state = {
+        dataDB: null,
+        currencies: null,
 
     }
+
+
+    componentDidMount() {
+        this.onGetProducts();
+    }
+
 
     onGetProducts = async () => {
         try {
@@ -29,11 +35,7 @@ class HomePage extends React.Component {
 
     render() {
         const { dataDB, currencies } = this.state;
-        console.log("dataDB", dataDB);
-        if (currencies) {
-            console.log("currencies");
-        }
-        console.log("--------------------");
+
         return (<div id="homePage">
             <div className="headerHome">
                 <header id="headerOfPage">
@@ -51,8 +53,6 @@ class HomePage extends React.Component {
                         </div>
                     }
                     <div className="link"><a href="#">Login</a></div>
-
-
                 </header>
             </div>
             <section className="filters">

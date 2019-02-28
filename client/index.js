@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import UploadImage from "./components/uploadImage";
 //import ProductForm from "./components/productForm";
 import HomePage from "./components/homePage";
 
@@ -13,8 +12,9 @@ const store = createStore(BaseReducer);
 
 store.subscribe(() => console.log("===>", store.getState()));
 
-//import "./scss/uploadImage.scss";
-//import "./scss/form.scss";
+/*import "./scss/uploadImage.scss";
+import "./scss/form.scss";
+*/
 import "./scss/homePage.scss";
 import "./scss/headerOfPage.scss";
 import "./scss/filters.scss";

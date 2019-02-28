@@ -14,7 +14,7 @@ class UploadImage extends React.Component {
         const reader = new FileReader();
         reader.onload = (e) => {
             image = e.target.result;
-            if ((selectedFile.size / 1024) > 20) {
+            if ((selectedFile.size / 1024) > 1000) {
                 let info = false;
                 this.props.SetIMAGE({ selectedFile, image, info });
             }
