@@ -1,11 +1,7 @@
-@mixin flex(){ 
-   display: flex;
-   justify-content: center;
-   align-items:center;
-}
-
+@import "~bootstrap/scss/bootstrap";
 body { 
 margin-left: 5vw;
+min-width: 600px;
 
 #loginPage {
   width: 90vw;
@@ -13,118 +9,58 @@ margin-left: 5vw;
   margin-top: -8px;
 
   display: grid;
-  grid-template-rows: 100px auto;
+  grid-template-rows: 100px auto 60px;
 
   grid-template-areas:
     "headerLogin"
-    "mainLogin";
+    "mainLogin"
+    "footerLogin";
 
   .headerLogin {
   background-color: rgb(241, 241, 241);
-  grid-area: headerLogin;
-  display: flex;
-  align-items: center; 
+  grid-area: headerLogin; 
   img { width: 120px;}
   }
-
   .mainLogin {
-    grid-area: mainLogin;
-    display: flex;
-    justify-content: center;
- #loginBox
-  {
-  margin-top: 2vh;    
-  border:1px solid black;
-  border-radius:8px; 
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  width: 440px;
-  height: 600px;
-  display: grid;
-  grid-template-columns: 220px 220px;  
-  grid-template-rows: 50px auto;
-
-  grid-template-areas:
-    "login register"
-    "main main";
-h1{
-  letter-spacing:3px;
-  font-family: Helvetica,Arial,sans-serif;
-  font-size:25px;
-}
-
-.activ {
-  background: white;
-  color: #70848f; 
-}
-.passiv {
-  background: rgb(241, 241, 241);
-  color: #c1c5c7;
-}
-.login {
-  @include flex();  
-  grid-area: login;
-  border-top-left-radius: 8px;
-  }
-  
-  .register {
-  @include flex();    
-  grid-area: register;
-  border-top-right-radius: 8px;
-  }
-   .main {
-   @include flex();       
-   flex-direction: column;
-  grid-area: main;
-
-  input[type="text"],input[type="password"],input[type="email"]{
-  padding:10px 10px 10px;
-  margin:5px 25px 20px;
-  width:225px;
-  text-align:center;
-  outline:none;
-  border:none;
-  background:none;
-  border-radius:15px;
-  
-  letter-spacing:2px;
-  border-bottom:2px lightgrey solid;
-  -webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 8px 8px -5px #222;
-}
-
-input:hover{
-  cursor:pointer;
-  transform:scale(1.1);
-  transition:0.3s;
-  
-}
-input:focus{
-  cursor:pointer;
-  transform:scale(1.1);
-  transition:0.3s; 
-}
-input[type="submit"]{
-  width:100px;
-  height:30px;
-  border-radius:15px;
-  outline:none;
-  background:none;
-  font-family: Helvetica,Arial,sans-serif;
-  font-weight:bold;
-  letter-spacing:1.5px;
-}
-input::placeholder{
-  font-weight:bold;
-  letter-spacing:2px;
-}
-  }
-}
-
-
-
+  background-color: white;
+  grid-area: mainLogin; 
  
+  display: flex;
+  justify-content: center;
+  .form-signin
+  {
+    margin-top: 50px;
+    text-align: center;
+    width: 300px;
+    height: auto;
+    input[type=email] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 50px;
+}input[type=password] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 50px;
+}
+
+.end { display: flex; flex-direction: column; }
+    
   }
+  .form-signup
+  {
+      margin-top: 50px;
+    text-align: center;
+    height: auto;
+  }
+
+  }
+  .footerLogin {
+  background-color: red;
+  grid-area: footerLogin; 
+  }
+  
     
 }
 }

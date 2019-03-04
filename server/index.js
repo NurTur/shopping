@@ -55,7 +55,7 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
     .then(() => {
         console.log("MongoDB Databases connected")
 
-        /*app.get('/api/products', async (req, res) => {
+        app.get('/api/products', async (req, res) => {
             const product = await PRODUCTS.find({});
             res.status(200).json(product);
         });
@@ -86,12 +86,12 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
             const addProduct = new PRODUCTS(newdata);
             await addProduct.save();
             res.status(201).json({ message: "advert added" });
-        });*/
+        });
 
 
-        Auth(USERS);
+        /*Auth(USERS);
         Route(Router, USERS);
-        app.use("/api/user", Router);
+        app.use("/api/user", Router);*/
 
         app.listen(PORT || 3000, () => {
             console.log("Listening on port " + PORT);

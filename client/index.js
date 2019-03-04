@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import ProductForm from "./components/productForm";
-import HomePage from "./components/homePage";
-import LoginPage from "./components/loginPage";
 
+import HomePageCode from "./services/homePageCode";
+//import LoginPageCode from "./services/loginPageCode";
+import LoginPage from "./components/loginPage2";
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -20,36 +20,38 @@ store.subscribe(() => console.log("===>", store.getState()));
 import "./scss/uploadImage.scss";
 import "./scss/form.scss";
 */
-import "./scss/homePage.scss";
-import "./scss/headerOfPage.scss";
-import "./scss/filters.scss";
-import "./scss/mainOfPage.scss";
+import "./scss/homePage/homePage.scss";
+import "./scss/homePage/headerOfPage.scss";
+import "./scss/homePage/filters.scss";
+import "./scss/homePage/mainOfPage.scss";
 import "./scss/loginPage.scss";
+
 
 const Books = ({ match }) => {
   return (<div>nur{match.params.id}</div>)
 }
 
 class Main extends React.Component {
-  state = { FormClass: null, GameClass: null, RecordClass: null }
+  state = { HomePage: null }
 
+  componentDidMount() {
+    this.onLoad();
+  }
 
   onLoad = async () => {
-    const FormClass = await FormClassCode();
-    const GameClass = await GameClassCode();
-    const RecordClass = await RecordClassCode();
-    this.setState({ FormClass, GameClass, RecordClass });
+    const HomePage = await HomePageCode();
+    this.setState({ HomePage });
   }
 
   render() {
-    const { FormClass, GameClass, RecordClass } = this.state;
+    const { HomePage } = this.state;
+
     return (
       <Provider store={store}>
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/user/:id" component={Books} />
           </Switch>
         </Router>
       </Provider>);
@@ -60,3 +62,6 @@ class Main extends React.Component {
 ReactDOM.render(<Main />,
   document.getElementById("app")
 )
+
+
+

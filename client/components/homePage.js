@@ -1,15 +1,19 @@
 import React from "react";
 import GetProducts from "../services/getProducts";
+import ExchangeClass from "../services/exhangeClass";
 import Product from "./product";
-import Exchange from "./exchange";
+//import Exchange from "./exchange";
 
 
 class HomePage extends React.Component {
-    state = { dataDB: null }
+    state = { dataDB: null, Exchange: null }
 
-    componentDidMount() { this.onGetProducts(); }
+    componentDidMount() {
+        this.onProducts();
+        this.onExchange();
+    }
 
-    onGetProducts = async () => {
+    onProducts = async () => {
         try {
             const dataDB = await GetProducts();
             this.setState({ dataDB });
@@ -17,8 +21,13 @@ class HomePage extends React.Component {
         catch (err) { console.log(err); }
     }
 
+    onExchange = async () => {
+        const Exchange = await ExchangeClass();
+        this.setState({ Exchange });
+    }
+
     render() {
-        const { dataDB } = this.state;
+        const { dataDB, Exchange } = this.state;
         return (<div id="homePage">
             <div className="headerHome">
                 <header id="headerOfPage">
