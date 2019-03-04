@@ -7,7 +7,7 @@
   .image { width: 120px; }
  
   .exhange {
-    margin-left:10px;
+    margin-left:20px;
     height: 80px;
     width: 450px;
     display: flex;
@@ -22,25 +22,55 @@
     }
   }
   .link { 
-    width: 100%;
-    font-size: 18px;
+
+    width: 100%;   
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-right: 40px;
-  a:hover {
-    background-color: rgb(241, 241, 241);
-    color:black;
-  }
-    a{
-    font-family: Helvetica,Arial,sans-serif;
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-     border:1px solid black; 
-     border-radius: 4px;
-     background-color: rgb(96, 96, 233);
-  }
+   
+   
+
+  
+
+a:hover{
+  cursor:pointer;
+  transform:scale(1.1);
+  transition:0.3s;
+  
+}
+a:focus{
+  cursor:pointer;
+  transform:scale(1.1);
+  transition:0.3s; 
+}
+a{
+  font-family: Helvetica,Arial,sans-serif;
+  color:black;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding:10px 10px 10px;
+  margin:5px 25px 20px;
+  width:225px;
+  text-align:center;
+  outline:none;
+  border:none;
+  background:none;
+  border-radius:15px;
+  
+  letter-spacing:2px;
+  border-bottom:2px lightgrey solid;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 8px 8px -5px #222;
+}
+
+
+
+
+ 
   }
    
   }     

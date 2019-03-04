@@ -1,21 +1,13 @@
 import React from "react";
 import GetProducts from "../services/getProducts";
-import GetExhange from "../services/getExhange";
 import Product from "./product";
+import Exchange from "./exchange";
 
 
 class HomePage extends React.Component {
-    state = {
-        dataDB: null,
-        currencies: null,
+    state = { dataDB: null }
 
-    }
-
-
-    componentDidMount() {
-        this.onGetProducts();
-    }
-
+    componentDidMount() { this.onGetProducts(); }
 
     onGetProducts = async () => {
         try {
@@ -25,34 +17,14 @@ class HomePage extends React.Component {
         catch (err) { console.log(err); }
     }
 
-    onGetExhange = async () => {
-        try {
-            const currencies = await GetExhange();
-            this.setState({ currencies });
-        }
-        catch (err) { console.log(err); }
-    }
-
     render() {
-        const { dataDB, currencies } = this.state;
-
+        const { dataDB } = this.state;
         return (<div id="homePage">
             <div className="headerHome">
                 <header id="headerOfPage">
                     <img className="image" src="/dist/images/logotip.jpg" alt="logotip" />
-                    {currencies &&
-                        <div className="exhange">
-                            <div className="rates">
-                                <img src="/dist/images/EUR.jpg" alt="EUR" />
-                                <h4>1 EUR = {(currencies.EUR.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</h4>
-                            </div>
-                            <div className="rates">
-                                <img src="/dist/images/USD.jpg" alt="USD flag" />
-                                <h4>1 USD = {(currencies.USD.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</h4>
-                            </div>
-                        </div>
-                    }
-                    <div className="link"><a href="#">Login</a></div>
+                    {dataDB && <Exchange />}
+                    <div className="link"><a href="/login">place an ad</a></div>
                 </header>
             </div>
             <section className="filters">
@@ -90,7 +62,7 @@ class HomePage extends React.Component {
                 </div>
             </section>
             <div className="mainHome">
-                {dataDB !== null ? <Product dataDB={dataDB} /> : "ttt"}
+                {dataDB && <Product dataDB={dataDB} />}
             </div>
             <div className="footerHome"></div>
         </div>);
