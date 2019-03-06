@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import PostRegister from "../services/postRegister";
 import PostLogin from "../services/postLogin";
 import PostContinue from "../services/postContinue";
@@ -154,3 +154,4 @@ class UserLogin extends React.Component {
 }
 
 export default UserLogin;
+*/

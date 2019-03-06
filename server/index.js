@@ -49,9 +49,52 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
 
+mongoose.connect(DATABASE, { useNewUrlParser: true });
+
+app.get('/api/products', async (req, res) => {
+    const product = await PRODUCTS.find({});
+    res.status(200).json(product);
+});
+
+app.post('/api/productsWithPhoto', upload.single('productImage'), async (req, res) => {
+
+    const newdata = {
+        productName: req.body.productName,
+        productDescription: req.body.productDescription,
+        productCategory: req.body.productCategory,
+        productPrice: req.body.productPrice,
+        productImage: req.file.path
+    }
+
+    const addProduct = new PRODUCTS(newdata);
+    await addProduct.save();
+    res.status(201).json({ message: "advert added" });
+})
+
+app.post('/api/productsOutPhoto', async (req, res) => {
+    const newdata = {
+        productName: req.body.productName,
+        productDescription: req.body.productDescription,
+        productCategory: req.body.productCategory,
+        productPrice: req.body.productPrice,
+        productImage: "uploads\\NoImageAvailable.jpg"
+    }
+    const addProduct = new PRODUCTS(newdata);
+    await addProduct.save();
+    res.status(201).json({ message: "advert added" });
+});
 
 
-mongoose.connect(DATABASE, { useNewUrlParser: true })
+
+app.listen(PORT || 3000, () => {
+    console.log("Listening on port " + PORT);
+});
+
+
+
+
+
+/*mongoose.connect(DATABASE, { useNewUrlParser: true });
     .then(() => {
         console.log("MongoDB Databases connected")
 
@@ -89,12 +132,12 @@ mongoose.connect(DATABASE, { useNewUrlParser: true })
         });
 
 
-        /*Auth(USERS);
+        Auth(USERS);
         Route(Router, USERS);
-        app.use("/api/user", Router);*/
+        app.use("/api/user", Router);
 
         app.listen(PORT || 3000, () => {
             console.log("Listening on port " + PORT);
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err));*/

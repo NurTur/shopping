@@ -1,6 +1,9 @@
 import React from "react";
 
+
 class Product extends React.Component {
+    el = React.createRef();
+
     lazyLoad = (el) => {
 
         function loadImage() {
@@ -37,6 +40,7 @@ class Product extends React.Component {
 
     render() {
         const { dataDB } = this.props;
+
         return (<div id="productsContainer" >
             {dataDB.map(e => <div className="flex-item" key={e._id}>
 

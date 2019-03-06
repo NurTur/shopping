@@ -1,3 +1,15 @@
+#headerPage {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background-color: white;
+
+.headerContainer {
+  width: 90vw;
+  height: 100px;
+  
+
+
 #headerOfPage {
   background-color: rgb(241, 241, 241);
   display: flex;
@@ -12,12 +24,13 @@
     width: 450px;
     display: flex;
     flex-direction: column;
-   
     .rates {
-     height: 40px;
-     display: flex;
-     flex-direction: row;
-     align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+     
      img { width: 63px; height: 35px;}   
     }
   }
@@ -33,18 +46,18 @@
 
   
 
-a:hover{
+nav:hover{
   cursor:pointer;
   transform:scale(1.1);
   transition:0.3s;
   
 }
-a:focus{
+nav:focus{
   cursor:pointer;
   transform:scale(1.1);
   transition:0.3s; 
 }
-a{
+nav{
   font-family: Helvetica,Arial,sans-serif;
   color:black;
   font-size: 20px;
@@ -74,3 +87,5 @@ a{
   }
    
   }     
+}
+}
