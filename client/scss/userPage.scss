@@ -1,0 +1,19 @@
+#userPage {
+  width: 90vw;
+  height: 500px;
+  background-color: rgb(241,241,241);
+  margin-left: 4vw;
+  margin-top: 15px;
+  
+  #adsEmptyBox
+  {
+    overflow-y: scroll;  
+    text-align: center;
+    padding-top:200px;    
+    font-family: Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    color:black;
+    font-size: 18px;
+  }
+
+}

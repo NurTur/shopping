@@ -1,7 +1,9 @@
 import React from "react";
 import GetExchange from "../services/getExchange";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-class HeaderPage extends React.Component {
+class HeaderPage extends React.PureComponent {
     state = { currencies: null }
 
     componentDidMount() {
@@ -15,31 +17,26 @@ class HeaderPage extends React.Component {
 
     render() {
         const { currencies } = this.state;
-        const style = { fontSize: "16px", fontWeight: "1000" };
         return (
             <div id="headerPage">
                 <div className="headerContainer">
-                    <div className="headerHome">
-                        <header id="headerOfPage">
-                            <img className="image" src="/dist/images/logotip.jpg" alt="logotip" />
+                    <header id="headerOfPage">
+                        <img className="image" src="/dist/images/logotip3.jpg" alt="logotip" />
+                        {currencies &&
+                            <div className="exchange">
+                                <div className="rates">1 EUR = {(currencies.EUR.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</div>
+                                <div className="rates">1 USD = {(currencies.USD.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</div>
+                            </div>}
+                        <nav className="navig">
+                            <Link to={"/"}>show adverts</Link>
+                            {this.props.User._id === "" ?
+                                <Link to={"/login"}>add advert</Link> :
+                                <Link to={`/users/${this.props.User._id}`}>add advert</Link>}
+                        </nav>
 
-                            {currencies &&
-                                <div className="exhange">
-                                    <div className="rates">
-                                        <img src="/dist/images/EUR.jpg" alt="EUR" />
-                                        <h4 style={style}>1 EUR = {(currencies.EUR.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</h4>
-                                    </div>
-                                    <div className="rates">
-                                        <img src="/dist/images/USD.jpg" alt="USD" />
-                                        <h4 style={style}>1 USD = {(currencies.USD.Value / currencies.KZT.Value * 100).toFixed(2)} KZT</h4>
-                                    </div> </div>}
-
-                            {/*<nav ><Link to='/login'>place an ad</Link></nav>*/}
-                        </header>
-                    </div></div></div>)
-
+                    </header>
+                </div></div>)
     }
 }
 
-
-export default HeaderPage;
+export default connect(state => ({ User: state.User }))(HeaderPage);

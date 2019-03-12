@@ -1,26 +1,32 @@
 import React from "react";
-import GetProducts from "../services/getProducts";
 import Product from "./product";
-import Exchange from "./exchange";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { GetDB } from "../store/actions/readDataMongo";
+import { TestLoadDB } from "../store/actions/readDataMongo";
+import GetProducts from "../services/getProducts";
+
 
 
 class HomePage extends React.Component {
-    state = { dataDB: null }
 
     componentDidMount() {
-        this.onProducts();
+        if (this.props.DBTest === false) {
+            this.onProducts();
+            this.props.TestLoadDB(true);
+        }
     }
 
     onProducts = async () => {
         try {
             const dataDB = await GetProducts();
-            this.setState({ dataDB });
+            this.props.GetDB(dataDB);
         }
         catch (err) { console.log(err); }
     }
 
+
     render() {
-        const { dataDB } = this.state;
         return (
             <div id="homePage">
                 <div className="homeContainer">
@@ -57,12 +63,12 @@ class HomePage extends React.Component {
                         </div>
                     </section>
                     <div className="mainHome">
-                        {dataDB && <Product dataDB={dataDB} />}
+                        {this.props.DBProduct.length > 0 && <Product />}
                     </div>
                 </div></div>);
     }
 }
 
-
-export default HomePage;
+export default connect(state => ({ DBProduct: state.DBProduct, DBTest: state.DBTest }),
+    dispatch => bindActionCreators({ GetDB, TestLoadDB }, dispatch))(HomePage);
 

@@ -9,7 +9,7 @@ const passport = require('passport');
 
 const PRODUCTS = mongoose.model("products", require("./models/productModel"));
 const USERS = mongoose.model("users", require("./models/usersModel"));
-const Route = require('./routes/usersRoute');
+const UserRoute = require('./routes/usersRoute');
 const Auth = require('./auth/auth');
 
 
@@ -85,6 +85,9 @@ app.post('/api/productsOutPhoto', async (req, res) => {
 });
 
 
+Auth(USERS);
+UserRoute(Router, USERS);
+app.use("/api/user", Router);
 
 app.listen(PORT || 3000, () => {
     console.log("Listening on port " + PORT);

@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import HomePageCode from "./services/homePageCode";
+import LoginPageCode from "./services/loginPageCode";
+import RegisterPageCode from "./services/registerPageCode";
+import UserPage from "./components/userPage";
 import Header from "./components/headerPage";
 
-//import LoginPageCode from "./services/loginPageCode";
-import LoginPage from "./components/loginPage2";
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import { createStore } from 'redux';
 import { Provider } from "react-redux";
 import BaseReducer from "./store/BaseReducer";
@@ -27,29 +26,43 @@ import "./scss/headerPage.scss";
 import "./scss/filters.scss";
 import "./scss/mainOfPage.scss";
 import "./scss/loginPage.scss";
+import "./scss/registerPage.scss";
+import "./scss/userPage.scss";
 
 
-/*const Books = ({ match }) => {
-  return (<div>nur{match.params.id}</div>)
-}*/
+
+
+function Users() { return (<Route path="/users/:id" component={UserPage} />) }
+
+
+
+
+
 
 class Main extends React.Component {
-  state = { HomePage: null }
+  state = { HomePage: null, LoginPage: null, RegisterPage: null }
+
   componentDidMount() {
-    this.onLoad();
+    this.onLoad()
   }
 
   onLoad = async () => {
     const HomePage = await HomePageCode();
-    this.setState({ HomePage });
+    const LoginPage = await LoginPageCode();
+    const RegisterPage = await RegisterPageCode();
+    this.setState({ HomePage, LoginPage, RegisterPage });
   }
 
   render() {
-    const { HomePage } = this.state;
-    return (<Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/login" component={LoginPage} />
-    </Switch>);
+    const { HomePage, LoginPage, RegisterPage } = this.state;
+    return (
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/users" component={Users} />
+      </Switch>
+    );
   }
 }
 
@@ -60,7 +73,7 @@ const App = () => (
   </div>
 )
 
-ReactDOM.render(<Router><App /></Router>,
+ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>,
   document.getElementById("app")
 )
 

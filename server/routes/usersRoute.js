@@ -1,7 +1,7 @@
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 
-module.exports = function (router, USERS, RECORDS) {
+module.exports = function (router, USERS) {
 
     router.get('/', (req, res) => {
         res.status(200).json({ username: "", _id: "X" });
@@ -36,7 +36,10 @@ module.exports = function (router, USERS, RECORDS) {
                 const hash = bcrypt.hashSync(req.body.password, 12);
                 const data = {
                     username: req.body.username,
-                    password: hash
+                    email: req.body.email,
+                    phone: req.body.phone,
+                    password: hash,
+                    products: []
                 };
 
                 const newuser = new USERS(data);

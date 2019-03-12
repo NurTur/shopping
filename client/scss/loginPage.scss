@@ -1,47 +1,90 @@
-@import "~bootstrap/scss/bootstrap";
-
 #loginPage {  
-display: flex;
-justify-content: center;
-.loginContainer {
-background-color: red;  
-width: 90vw;
-height: auto; 
-  .mainLogin {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  .form-signin
-  {
-    margin-top: 50px;
-    text-align: center;
-    width: 300px;
-    height: auto;
-    input[type=email] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    height: 50px;
-}input[type=password] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    height: 50px;
+ width:450px;
+ background-color:rgba(24, 33, 52, 0.7);
+ margin: 100px auto 0 auto;
+ text-align: center;
+ box-shadow: 0 -5px 0 rgb(241,241,241);
+ padding-bottom: 50px;
+ img{
+ width:80px;
+ height:80px;
+ margin: -60px 0 30px 0;
+ border: 5px solid #1a394f;
+ border-radius: 50%;
+ box-shadow: 0 -5px 0 rgb(241,241,241);
+}
+input[type="text"],input[type="password"]
+{
+ width: 300px;
+ height:40px;
+ font-size: 18px;
+ border-radius: 4px;
+ margin-bottom: 20px;
+ padding-left: 40px;
+ padding-top: 10px;
 }
 
-.end { display: flex; flex-direction: column; }
-    
-  }
-  .form-signup
-  {
-      margin-top: 50px;
-    text-align: center;
-    height: auto;
-  }
+.username input:hover{
+ box-shadow: 0 0 6px 3px rgb(241,241,241);
+}
 
-  }
+.username::before{
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADISURBVEhL7dJNDkExFIbhxsAOmGBuQVZiV35iKvYg9mBoQPyMMLi+lza5uWnlamvWL3mSpnoOcY4pyZWRLOVqrWQsWULzo1QNJxlKcvjlzebOQpJzE19zXCQ5f/8CBuprjpkkh21hoM3mDD7LkAmbxED5S84yl2zNS4LpyOBzfGcid4uzC2942zpdmcpeDtKTvj27DeLMHZ9x5i011H4NBTupryPbg/pd6H4r9AhmI/WCGGsJ5im+ol88JBhfQYxgfI9jlLSNMS+G8pKBrQ5a9QAAAABJRU5ErkJggg==);
+  position: absolute;
+  padding-top:18px;
+  padding-left: 10px;
 
-  
-    
+}
+
+.password input:hover{
+ box-shadow: 0 0 6px 3px rgb(241,241,241);
+}
+
+.password::before{
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADZSURBVEhL3ZRRDsFAFEX7hQQrYCX4J4ilsEzxJxbgAysQ/9w7mZGJvLrzKhJxkpP2te++ttNkql+gA9dwB29RnvNaC37EEB7gvcY9HMBG8M3TcA5awh7sx/N0j8c2dLOBaXiXF17gg46QPVwuN1xnhhehsllB9mxD5YQ/k2EuSx38CvZcQ+WEQaoo7XsyhxeYgqUyM4OSM7QGlHiCEivoUWKFPEqskEeJFfIoyZtHcOyoqSRvnkRLayrJm5sosUIeJVbIo8QKeZR8favghsVGa8A7mZnCv6KqHkyV9TNOVnNGAAAAAElFTkSuQmCC);
+  position: absolute;
+  padding-top:18px;
+  padding-left: 10px;
+
+}
+
+input[type="submit"]:hover {
+  cursor:pointer;
+  transform:scale(1.1);
+  transition:0.3s;
+}
+
+
+input[type="submit"] {
+  font-family: Helvetica,Arial,sans-serif;
+  color:rgb(241,241,241);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-right: 25px;
+  margin-top: 10px;
+  padding:5px 15px 2px 15px;
+  width:auto;
+  height: auto;
+  text-align:center;
+  outline:none;
+  border:none;
+  background:none;
+  border-radius:15px;
+  letter-spacing:1px;
+  border-bottom:2px lightgrey solid;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 8px 8px -5px #222;
+} 
+
+.register
+{
+  padding-top:20px;
+ 
+  a { color: rgb(241,241,241); }
 }
 }
+
+
+
