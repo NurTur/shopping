@@ -1,12 +1,12 @@
-
-/* body{
+/*body{
  background-color: #373f46;
   text-align: center;
 
   min-width: 320px;
- }
+ }*/
 
 #form-outer {
+  overflow-y: auto;   
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   font-size: 18px;
@@ -14,10 +14,11 @@
   background-color: rgb(235, 231, 225);
    margin: 0 auto;
   border-radius: 4px;
-  width: 50%;
+  width: 66.6%;
   max-width: 750px;
   padding: 10px;
   padding-top: 20px;
+  
 }
 
 .labels {
@@ -61,20 +62,25 @@
   justify-content: center;
   align-items: center;
 }
-#submit:hover {
+
+.button:hover {
   color: black;
   background-color: #8bc0ee;
 }
-#submit {
+.button {
   background-color: #0b599e;
   border-radius: 4px;
   color: white;
   font-size: 1em;
   height: 40px;
-  width: 100%;
- 
+  width: 40%; 
   border: 0px solid;
 }
+.button2
+{
+      margin-left: 5%;
+}
+
 
 @media screen and (max-width: 1054px) {
   .input-field {
@@ -100,4 +106,4 @@
   select {
     width: 100%;
   }
-}*/
+}

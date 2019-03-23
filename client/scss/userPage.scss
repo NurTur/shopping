@@ -1,13 +1,12 @@
 #userPage {
-  width: 90vw;
-  height: 500px;
-  background-color: rgb(241,241,241);
+  width: 90vw; 
   margin-left: 4vw;
   margin-top: 15px;
   
   #adsEmptyBox
   {
-    overflow-y: scroll;  
+    background-color: rgb(241,241,241);
+    height: 300px;  
     text-align: center;
     padding-top:200px;    
     font-family: Helvetica,Arial,sans-serif;
@@ -16,4 +15,41 @@
     font-size: 18px;
   }
 
+.buttonBox
+{
+ margin-top:30px; 
+
+ width: 100%;   
+ display: flex;
+ justify-content: flex-end;
+.add
+{
+ button {
+ background-color: rgba(101, 107, 119, 0.7);
+ border:1px solid black;   
+ width: 120px;
+ height:40px;
+ font-family: Helvetica,Arial,sans-serif;
+ font-weight: 700;
+ font-size: 20px;
+ border-radius: 4px;
+ padding-left: 40px;
+ }
+ button:hover
+{
+  background-color: rgb(241,241,241);  
+}
+}
+
+.add::before
+{
+content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADeSURBVEhL7ZbBCQIxFETThQoePNiFXgQL8iBYgtuTJViSgs7ABiLOT/6aiIr74MHy/ZlR2UPCyKeZwQ3cVsoMZrnYwyu8NZJZzMzCb9eyNMrMCTRZQ3WwhSto8s5iZpukxWd4qpQZg4uzi07ceWMxmcNDL59JOlPGvari0kyZOytRi6WZMndW4l508pvFNS/XAna9fDZRxaWZMu65KZWomTLuuVElNbjz/rt4B9U9SrmEkXTODCvvgSl85epzhBH1ufIJXswuUC1bNikm/OVDrrfVf3VrWr+sbr6tOIQ7Mm0lYnHFeXsAAAAASUVORK5CYII=);
+ position: absolute;
+ padding-left: 10px;
+ padding-top: 5px;
+}
+
+
+
+  }
 }

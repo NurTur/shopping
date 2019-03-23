@@ -28,15 +28,13 @@ import "./scss/mainOfPage.scss";
 import "./scss/loginPage.scss";
 import "./scss/registerPage.scss";
 import "./scss/userPage.scss";
+import "./scss/productForm.scss";
+import "./scss/uploadImage.scss";
 
 
 
 
 function Users() { return (<Route path="/users/:id" component={UserPage} />) }
-
-
-
-
 
 
 class Main extends React.Component {
@@ -60,7 +58,7 @@ class Main extends React.Component {
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route path="/users" component={Users} />
+        <Route path="/zapas" component={UserPage} />
       </Switch>
     );
   }

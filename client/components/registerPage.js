@@ -51,7 +51,7 @@ class UserRegister extends React.Component {
     render() {
         const { user, username, email, phone, password } = this.state;
         if (user._id !== "X") {
-            return <Redirect to={`/users/${user._id}`} />
+            return <Redirect to={"/zapas"}/*to={`/users/${user._id}`}*/ />
         }
         else {
             return <div id="registerPage">

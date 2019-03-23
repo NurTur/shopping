@@ -4,10 +4,12 @@ export default function (file, obj) {
     if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
         const formData = new FormData();
         formData.append('productImage', file);
+        formData.append('_id', obj._id);
         formData.append('productName', obj.productName);
         formData.append('productDescription', obj.productDescription);
         formData.append('productCategory', obj.productCategory);
         formData.append('productPrice', obj.productPrice);
+        formData.append('productValuta', obj.productValuta);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'

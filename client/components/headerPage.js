@@ -31,7 +31,8 @@ class HeaderPage extends React.PureComponent {
                             <Link to={"/"}>show adverts</Link>
                             {this.props.User._id === "" ?
                                 <Link to={"/login"}>add advert</Link> :
-                                <Link to={`/users/${this.props.User._id}`}>add advert</Link>}
+                                <Link to={"/zapas"}>add advert</Link>
+                                /*<Link to={`/users/${this.props.User._id}`}>add advert</Link>*/}
                         </nav>
 
                     </header>

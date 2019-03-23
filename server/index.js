@@ -63,6 +63,7 @@ app.post('/api/productsWithPhoto', upload.single('productImage'), async (req, re
         productDescription: req.body.productDescription,
         productCategory: req.body.productCategory,
         productPrice: req.body.productPrice,
+        productValuta: req.body.productValuta,
         productImage: req.file.path
     }
 
@@ -77,10 +78,12 @@ app.post('/api/productsOutPhoto', async (req, res) => {
         productDescription: req.body.productDescription,
         productCategory: req.body.productCategory,
         productPrice: req.body.productPrice,
+        productValuta: req.body.productValuta,
         productImage: "uploads\\NoImageAvailable.jpg"
     }
-    const addProduct = new PRODUCTS(newdata);
-    await addProduct.save();
+    const User = await USERS.findById(req.body._id);
+    User.products = [...User.products, newdata];
+    await User.save();
     res.status(201).json({ message: "advert added" });
 });
 
