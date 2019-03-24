@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { SetIMAGE } from "../store/actions/productImage";
+import { AddPRODUCT } from "../store/actions/user";
 import UploadImage from "./uploadImage";
 import PostProduct from "../services/postProduct";
 
@@ -37,8 +38,12 @@ class ProductForm extends React.Component {
             productDescription: this.productDescriptionRef.current.value,
             productCategory: this.productCategoryRef.current.value,
             productPrice: this.productPriceRef.current.value,
-            productValuta: this.state.productValuta
+            productValuta: this.state.productValuta,
+            Date: Date.now()
         };
+
+        this.props.AddPRODUCT(obj);
+        this.props.onCloseModal();
 
         if (image && info) {
             PostProduct(this.props.UploadImage.selectedFile, obj).then(res => console.log(res.data));
@@ -46,7 +51,6 @@ class ProductForm extends React.Component {
         else {
             PostProduct(null, obj).then(res => console.log(res.data));
         }
-
     };
 
     render() {
@@ -122,14 +126,13 @@ class ProductForm extends React.Component {
 
                     </form>
                 </div>
-
             </Modal>
         );
     }
 }
 
 export default connect(state => ({ User: state.User, UploadImage: state.UploadImage }),
-    dispatch => bindActionCreators({ SetIMAGE }, dispatch))(ProductForm);
+    dispatch => bindActionCreators({ SetIMAGE, AddPRODUCT }, dispatch))(ProductForm);
 
 
 
