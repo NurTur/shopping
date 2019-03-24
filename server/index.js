@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toLocaleDateString() + file.originalname);
+        cb(null, Date.now() + file.originalname);
     },
 
 });
@@ -64,14 +64,14 @@ app.post('/api/productsWithPhoto', upload.single('productImage'), async (req, re
         productCategory: req.body.productCategory,
         productPrice: req.body.productPrice,
         productValuta: req.body.productValuta,
-        Date: req.body.Date,
+        Date: Date.now(),
         productImage: req.file.path
     }
 
     const User = await USERS.findById(req.body._id);
     User.products = [...User.products, newdata];
     await User.save();
-    res.status(201).json({ message: "advert added" });
+    res.status(201).json(newdata);
 })
 
 app.post('/api/productsOutPhoto', async (req, res) => {
@@ -81,13 +81,13 @@ app.post('/api/productsOutPhoto', async (req, res) => {
         productCategory: req.body.productCategory,
         productPrice: req.body.productPrice,
         productValuta: req.body.productValuta,
-        Date: req.body.Date,
+        Date: Date.now(),
         productImage: "uploads\\NoImageAvailable.jpg"
     }
     const User = await USERS.findById(req.body._id);
     User.products = [...User.products, newdata];
     await User.save();
-    res.status(201).json({ message: "advert added" });
+    res.status(201).json(newdata);
 });
 
 

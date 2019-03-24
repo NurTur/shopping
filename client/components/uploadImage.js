@@ -9,7 +9,14 @@ class UploadImage extends React.Component {
 
     onFileSelected(event) {
         event.preventDefault();
-        const selectedFile = event.target.files[0];
+
+        let selectedFile = event.target.files[0];
+
+        /*const fileName = { name: Date.now().toString() + selectedFile.name };
+        let selected = Object.assign(selectedFile);*/
+
+        selectedFile.name =
+            console.log(selectedFile.name);
         let image = new Image();
         const reader = new FileReader();
         reader.onload = (e) => {

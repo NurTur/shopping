@@ -38,42 +38,6 @@ function Users() { return (<Route path="/users/:id" component={UserPage} />) }
 
 
 
-class Table extends React.Component {
-  render() {
-    return (
-      <div id="userPage">
-        <div id="adsBox">
-          <ul className="responsive-table">
-            <li className="table-header">
-              <div className="col col-1">Picture</div>
-              <div className="col col-2">Name</div>
-              <div className="col col-3">Price</div>
-              <div className="col col-4">Date</div>
-              <div className="col col-5"></div>
-
-            </li>
-            <li className="table-row">
-              <div className="col col-1" data-label="Picture"><img className="picture" src="/uploads/2019-2-28phone1.jpg" alt="logotip" /></div>
-              <div className="col col-2" data-label="Name">John Doe</div>
-              <div className="col col-3" data-label="Price">$350</div>
-              <div className="col col-4" data-label="Data">Pending</div>
-              <div className="col col-5" data-label="Delete"></div>
-            </li>
-            <li className="table-row">
-              <div className="col col-1" data-label="Picture"><img className="picture" src="/uploads/2019-2-28phone1.jpg" alt="logotip" /></div>
-              <div className="col col-2" data-label="Name">John Doe</div>
-              <div className="col col-3" data-label="Price">$350</div>
-              <div className="col col-4" data-label="Data">Pending</div>
-              <div className="col col-5" data-label="Delete"></div>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-
-    );
-  }
-}
 
 
 
@@ -109,7 +73,6 @@ const App = () => (
   <div>
     <Header />
     <Main />
-
   </div>
 )
 

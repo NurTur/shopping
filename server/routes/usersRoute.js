@@ -23,7 +23,7 @@ module.exports = function (router, USERS) {
 
 
     router.post('/login', passport.authenticate('local', { failureRedirect: '/api/user' }), (req, res) => {
-        res.status(200).json({ username: req.user.username, _id: req.user._id, });
+        res.status(200).json(req.user);
     });
 
     router.post('/register', (req, res, next) => {

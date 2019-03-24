@@ -39,17 +39,20 @@ class ProductForm extends React.Component {
             productCategory: this.productCategoryRef.current.value,
             productPrice: this.productPriceRef.current.value,
             productValuta: this.state.productValuta,
-            Date: Date.now()
         };
 
-        this.props.AddPRODUCT(obj);
-        this.props.onCloseModal();
+
+
 
         if (image && info) {
-            PostProduct(this.props.UploadImage.selectedFile, obj).then(res => console.log(res.data));
+            PostProduct(this.props.UploadImage.selectedFile, obj)
+                .then(res => this.props.AddPRODUCT(res.data))
+                .then(res => this.props.onCloseModal())
         }
         else {
-            PostProduct(null, obj).then(res => console.log(res.data));
+            PostProduct(null, obj)
+                .then(res => this.props.AddPRODUCT(res.data))
+                .then(res => this.props.onCloseModal())
         }
     };
 

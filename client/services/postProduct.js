@@ -10,7 +10,6 @@ export default function (file, obj) {
         formData.append('productCategory', obj.productCategory);
         formData.append('productPrice', obj.productPrice);
         formData.append('productValuta', obj.productValuta);
-        formData.append('Date', obj.Date);
 
         const config = {
             headers: {

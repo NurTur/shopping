@@ -1,13 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
 import ProductForm from "./productForm";
-
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { RemovePRODUCT } from "../store/actions/user";
 
 class UserPage extends React.PureComponent {
     state = { modalOpen: false }
 
     onOpenModal = () => this.setState({ modalOpen: true });
     onCloseModal = () => this.setState({ modalOpen: false });
+    onRemove = (i) => {
+        this.props.RemovePRODUCT(i);
+        console.log(i);
+    };
 
     render() {
         return (<div id="userPage">
@@ -20,21 +25,23 @@ class UserPage extends React.PureComponent {
                             <div className="col col-2">Name</div>
                             <div className="col col-3">Price</div>
                             <div className="col col-4">Date</div>
-                            <div className="col col-5"></div>
+                            <div className="col col-6"></div>
 
                         </li>
                         {this.props.User.products.map((e, i) => <li key={i} className="table-row">
-                            <div className="col col-1" data-label="Picture"></div>
+                            <div className="col col-1" data-label="Picture">
+                                <img className="picture" src={e.productImage} alt="" /></div>
                             <div className="col col-2" data-label="Name"><div>{e.productName}</div>
                                 <div>{e.productCategory}</div></div>
-                            <div className="col col-3" data-label="Price">{e.productPrice}</div>
-                            <div className="col col-4" data-label="Data">{Date(e.Date).toString()}</div>
-                            <div className="col col-5" data-label="Delete"></div>
+                            <div className="col col-3" data-label="Price">
+                                {`${new Intl.NumberFormat(['ban', 'id']).format(parseFloat(e.productPrice))} ${e.productValuta}`}</div>
+                            <div className="col col-4" data-label="Data">
+                                <div>{new Date(parseInt(e.Date)).toLocaleDateString()}</div>
+                                <div>{new Date(parseInt(e.Date)).toLocaleTimeString()}</div>
+                            </div>
+                            <div className="col col-5" data-label="Delete" onClick={() => this.onRemove(i)}></div>
                         </li>)}
-
-
                     </ul>
-
                 </div>
             }
             <div className="buttonBox"><div className="add" onClick={this.onOpenModal}><button>ADD</button></div></div>
@@ -43,6 +50,9 @@ class UserPage extends React.PureComponent {
     }
 }
 
-export default connect(state => ({ User: state.User }))(UserPage);
+
+export default connect(state => ({ User: state.User }),
+    dispatch => bindActionCreators({ RemovePRODUCT }, dispatch))(UserPage);
+
 
 
