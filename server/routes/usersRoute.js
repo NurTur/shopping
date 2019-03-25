@@ -1,6 +1,7 @@
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 
+
 module.exports = function (router, USERS) {
 
     router.get('/', (req, res) => {
@@ -12,15 +13,17 @@ module.exports = function (router, USERS) {
         res.status(200).json(user);
     });
 
-    router.post('/continue', async (req, res) => {
-        const obj = await USERS.findOne({ _id: req.body._id });
-        obj.phone = req.body.phone;
-        obj.email = req.body.email;
-        obj.products = [];
-        obj.save();
-        res.status(201).json({ message: "user registered" });
+    router.post("/updateProducts", async (req, res) => {
+        const user = await USERS.findOne({ _id: req.body._id });
+        user.products = [...req.body.products];
+        await user.save();
+        res.status(200).json({ message: "products Updated" });
     });
 
+    router.get('/logout', (req, res) => {
+        req.logout();
+        res.redirect('/');
+    });
 
     router.post('/login', passport.authenticate('local', { failureRedirect: '/api/user' }), (req, res) => {
         res.status(200).json(req.user);

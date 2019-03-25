@@ -7,16 +7,10 @@ import { SetIMAGE } from "../store/actions/productImage";
 
 class UploadImage extends React.Component {
 
-    onFileSelected(event) {
+    onFileSelected = (event) => {
         event.preventDefault();
 
-        let selectedFile = event.target.files[0];
-
-        /*const fileName = { name: Date.now().toString() + selectedFile.name };
-        let selected = Object.assign(selectedFile);*/
-
-        selectedFile.name =
-            console.log(selectedFile.name);
+        const selectedFile = event.target.files[0];
         let image = new Image();
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -50,7 +44,7 @@ class UploadImage extends React.Component {
                     id="image_uploads"
                     name="image_uploads"
                     accept=".jpg, .jpeg, .png"
-                    onChange={this.onFileSelected.bind(this)}
+                    onChange={this.onFileSelected}
 
                 />
                 <label htmlFor="image_uploads">Choose images to upload (PNG, JPG)</label>

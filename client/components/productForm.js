@@ -31,28 +31,31 @@ class ProductForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const { image, info } = this.props.UploadImage;
-        const obj = {
-            _id: this.props.User._id,
-            productName: this.productNameRef.current.value,
-            productDescription: this.productDescriptionRef.current.value,
-            productCategory: this.productCategoryRef.current.value,
-            productPrice: this.productPriceRef.current.value,
-            productValuta: this.state.productValuta,
-        };
+        if (this.productNameRef.current.value && this.productPriceRef.current.value) {
+            const { image, info } = this.props.UploadImage;
+            const obj = {
+                _id: this.props.User._id,
+                productName: this.productNameRef.current.value,
+                productDescription: this.productDescriptionRef.current.value,
+                productCategory: this.productCategoryRef.current.value,
+                productPrice: this.productPriceRef.current.value,
+                productValuta: this.state.productValuta,
+            };
 
-
-
-
-        if (image && info) {
-            PostProduct(this.props.UploadImage.selectedFile, obj)
-                .then(res => this.props.AddPRODUCT(res.data))
-                .then(res => this.props.onCloseModal())
-        }
-        else {
-            PostProduct(null, obj)
-                .then(res => this.props.AddPRODUCT(res.data))
-                .then(res => this.props.onCloseModal())
+            if (image && info) {
+                this.props.onCloseModal();
+                PostProduct(this.props.UploadImage.selectedFile, obj)
+                    .then(res => this.props.AddPRODUCT(res.data));
+            }
+            else {
+                this.props.onCloseModal();
+                PostProduct(null, obj)
+                    .then(res => this.props.AddPRODUCT(res.data));
+            }
+        } else {
+            this.productNameRef.current.value = "";
+            this.productDescriptionRef.current.value = "";
+            this.productPriceRef.current.value = "";
         }
     };
 

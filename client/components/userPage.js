@@ -4,15 +4,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { RemovePRODUCT } from "../store/actions/user";
 
-class UserPage extends React.PureComponent {
+
+class UserPage extends React.Component {
     state = { modalOpen: false }
 
     onOpenModal = () => this.setState({ modalOpen: true });
     onCloseModal = () => this.setState({ modalOpen: false });
-    onRemove = (i) => {
-        this.props.RemovePRODUCT(i);
-        console.log(i);
-    };
+    onRemove = (i) => this.props.RemovePRODUCT(i);
+
 
     render() {
         return (<div id="userPage">
@@ -26,7 +25,6 @@ class UserPage extends React.PureComponent {
                             <div className="col col-3">Price</div>
                             <div className="col col-4">Date</div>
                             <div className="col col-6"></div>
-
                         </li>
                         {this.props.User.products.map((e, i) => <li key={i} className="table-row">
                             <div className="col col-1" data-label="Picture">

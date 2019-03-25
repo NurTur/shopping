@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { GetDB } from "../store/actions/readDataMongo";
 import { TestLoadDB } from "../store/actions/readDataMongo";
 import GetProducts from "../services/getProducts";
-
+import UpdateProducts from "../services/updateProducts";
 
 
 class HomePage extends React.Component {
@@ -15,6 +15,10 @@ class HomePage extends React.Component {
             this.onProducts();
             this.props.TestLoadDB(true);
         }
+        if (this.props.User._id !== "") {
+            this.onUpdateProducts({ _id: this.props.User._id, products: this.props.User.products });
+        }
+
     }
 
     onProducts = async () => {
@@ -25,8 +29,17 @@ class HomePage extends React.Component {
         catch (err) { console.log(err); }
     }
 
+    onUpdateProducts = async (obj) => {
+        try {
+            const result = await UpdateProducts(obj);
+            console.log(result);
+        }
+        catch (err) { console.log(err); }
+    }
+
 
     render() {
+
         return (
             <div id="homePage">
                 <div className="homeContainer">
@@ -69,6 +82,6 @@ class HomePage extends React.Component {
     }
 }
 
-export default connect(state => ({ DBProduct: state.DBProduct, DBTest: state.DBTest }),
+export default connect(state => ({ DBProduct: state.DBProduct, DBTest: state.DBTest, User: state.User }),
     dispatch => bindActionCreators({ GetDB, TestLoadDB }, dispatch))(HomePage);
 
