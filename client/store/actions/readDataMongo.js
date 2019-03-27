@@ -1,5 +1,7 @@
-export const READDB = "READDB";
-export const LOADDB = "LOADDB";
-export const GetDB = (obj) => ({ type: READDB, payload: obj });
-export const TestLoadDB = (bool) => ({ type: LOADDB, payload: bool });
+export const READ = "READ";
+export const GETPR = "GETPR";
+export const GETDB = (obj) => ({ type: READ, payload: obj });
+export const GETProducts = (arr) => ({ type: GETPR, payload: arr });
+
+
 

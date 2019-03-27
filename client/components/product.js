@@ -1,10 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 
 class Product extends React.Component {
 
-    singleRefs = this.props.DBProduct.reduce((acc, value) => {
-        acc[value._id] = React.createRef();
+    singleRefs = this.props.DBProducts.reduce((acc, value) => {
+        acc[value._IdUser + value.Date] = React.createRef();
         return acc;
     }, {});
 
@@ -31,20 +30,20 @@ class Product extends React.Component {
             );
         } else {
             Object.values(this.singleRefs).forEach((value, index) => {
-                if (index < 6) { value.current.src = value.current.dataset.src }
+                if (index < 2) { value.current.src = value.current.dataset.src }
                 else { this.observer.observe(value.current); }
             }
             );
         }
     }
 
+
     render() {
-        const { DBProduct } = this.props;
         return (<div id="productsContainer">
-            {DBProduct.map(e => <div className="flex-item" key={e._id}>
+            {this.props.DBProducts.map((e, i) => <div className="flex-item" key={e._IdUser + e.Date}>
                 <div className="productItem">
                     <div className="image">
-                        <img ref={this.singleRefs[e._id]} data-src={e.productImage} alt="" />
+                        <img ref={this.singleRefs[e._IdUser + e.Date]} data-src={e.productImage} alt="" />
                     </div>
                     <div className="title">{(e.productName.length > 20) ? e.productName.slice(0, 20) + '...' : e.productName}</div>
                     <div className="description">{(e.productDescription.length > 135) ? e.productDescription.slice(0, 135) + '...' :
@@ -60,6 +59,4 @@ class Product extends React.Component {
 
 }
 
-export default connect(state => ({ DBProduct: state.DBProduct }))(Product);
-
-
+export default Product;

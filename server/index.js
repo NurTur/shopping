@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const session = require('express-session');
 const passport = require('passport');
+const fs = require('fs');
 
 const PRODUCTS = mongoose.model("products", require("./models/productModel"));
 const USERS = mongoose.model("users", require("./models/usersModel"));
@@ -51,14 +52,22 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose.connect(DATABASE, { useNewUrlParser: true });
 
-app.get('/api/products', async (req, res) => {
-    const product = await PRODUCTS.find({});
-    res.status(200).json(product);
+app.get('/api/users', async (req, res) => {
+    const Users = await USERS.find({});
+    res.status(200).json(Users);
+});
+
+app.post('/api/deleteImages', async (req, res) => {
+    req.body.forEach(e => {
+        fs.unlinkSync(e);
+    });
+    res.status(200).json({ message: "Files deleted" });
 });
 
 app.post('/api/productsWithPhoto', upload.single('productImage'), async (req, res) => {
 
     const newdata = {
+        _IdUser: req.body._id,
         productName: req.body.productName,
         productDescription: req.body.productDescription,
         productCategory: req.body.productCategory,
@@ -76,13 +85,14 @@ app.post('/api/productsWithPhoto', upload.single('productImage'), async (req, re
 
 app.post('/api/productsOutPhoto', async (req, res) => {
     const newdata = {
+        _IdUser: req.body._id,
         productName: req.body.productName,
         productDescription: req.body.productDescription,
         productCategory: req.body.productCategory,
         productPrice: req.body.productPrice,
         productValuta: req.body.productValuta,
         Date: Date.now(),
-        productImage: "uploads\\NoImageAvailable.jpg"
+        productImage: "dist\\images\\NoImageAvailable.jpg"
     }
     const User = await USERS.findById(req.body._id);
     User.products = [...User.products, newdata];
