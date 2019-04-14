@@ -40,4 +40,4 @@ class HeaderPage extends React.PureComponent {
     }
 }
 
-export default connect(state => ({ User: state.User }))(HeaderPage);
+export default connect(state => ({ dictionary: state.dictionary.messages }))(HeaderPage);
